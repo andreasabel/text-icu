@@ -23,11 +23,16 @@ jobs:
 
     steps:
 
-    - name: Install the ICU library
+    # Installing ICU is not necessary, macOS-latest already has v69.1
+    # - name: Install the ICU library
+    #   shell: bash
+    #   run: |
+    #     brew install icu4c
+
+    - name: Set up pkg-config for the ICU library
       shell: bash
       run: |
-        brew install icu4c
-        echo "PKG_CONFIG_PATH=/usr/local/opt/icu4c/lib/pkgconfig"  >> ${GITHUB_ENV}
+        echo "PKG_CONFIG_PATH=/usr/local/opt/icu4c/lib/pkgconfig" >> ${GITHUB_ENV}
 
     - name: Checkout
       uses: actions/checkout@v2
